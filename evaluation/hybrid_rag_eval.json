@@ -1,0 +1,79 @@
+{
+  "k": 5,
+  "cases": [
+    {
+      "id": "H1",
+      "question": "How does the application combine dense and sparse retrieval?",
+      "relevant": [
+        "retrieval",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "H2",
+      "question": "How is BM25 used in the retrieval pipeline?",
+      "relevant": [
+        "retrieval"
+      ]
+    },
+    {
+      "id": "H3",
+      "question": "How does the cross-encoder reranker work?",
+      "relevant": [
+        "rerank"
+      ]
+    },
+    {
+      "id": "H4",
+      "question": "How are retrieved documents sent to the language model?",
+      "relevant": [
+        "generation"
+      ]
+    },
+    {
+      "id": "H5",
+      "question": "How are documents loaded and chunked before indexing?",
+      "relevant": [
+        "processing",
+        "ingest"
+      ]
+    },
+    {
+      "id": "H6",
+      "question": "How does the FastAPI backend expose the RAG application?",
+      "relevant": [
+        "router"
+      ]
+    },
+    {
+      "id": "H7",
+      "question": "How does authentication protect user data?",
+      "relevant": [
+        "auth"
+      ]
+    },
+    {
+      "id": "H8",
+      "question": "What vector database is used by the application?",
+      "relevant": [
+        "database",
+        "retrieval"
+      ]
+    },
+    {
+      "id": "H9",
+      "question": "How does reranking change the final top-k results?",
+      "relevant": [
+        "rerank",
+        "retrieval"
+      ]
+    },
+    {
+      "id": "H10",
+      "question": "Where is the RAG retrieval logic implemented?",
+      "relevant": [
+        "retrieval"
+      ]
+    }
+  ]
+}
