@@ -39,12 +39,19 @@ def main() -> None:
         latency_ms = (time.perf_counter() - started) * 1000
         sources = [source_key(doc) for doc in docs]
         relevant = set(case["relevant"])
+        retrieved_labels = [
+            expected
+            for source in sources
+            for expected in relevant
+            if matches(source, expected)
+        ]
 
         rows.append({
             "id": case["id"],
             "question": case["question"],
-            "retrieved": sources,
+            "retrieved": retrieved_labels,
             "relevant": sorted(relevant),
+            "retrieved_sources": sources,
             "latency_ms": round(latency_ms, 2),
         })
 
