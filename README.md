@@ -13,6 +13,16 @@ The project includes:
 - Supabase authentication and an Aiven PostgreSQL database for user and query records.
 - Optional LangSmith tracing.
 
+## Engineering Highlights
+
+- **Hybrid retrieval:** combines semantic vector search with BM25 keyword retrieval to cover both conceptual and exact-code queries.
+- **Retrieval fusion + reranking:** candidate results are combined and then refined with a cross-encoder before generation.
+- **Source-grounded generation:** the LLM receives the most relevant retrieved context and can return source snippets with the answer.
+- **Production API:** FastAPI provides authentication, ingestion, health checks and synchronous/streaming Q&A endpoints.
+- **User isolation:** Supabase authentication protects user-facing operations and PostgreSQL stores application/query data.
+- **Observability:** optional LangSmith tracing makes the RAG pipeline easier to inspect and debug.
+- **Deployable architecture:** the backend, frontend and external vector/database services are separated so the system can be deployed independently.
+
 ## How It Works
 
 ```text
