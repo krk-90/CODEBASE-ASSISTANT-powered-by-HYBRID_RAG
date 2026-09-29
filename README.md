@@ -93,23 +93,31 @@ Hybrid_rag/
 
 From the project root:
 
-```powershell
-cd "C:\Users\<user>\OneDrive\Desktop\Hybrid_rag"
+```bash
+git clone https://github.com/krk-90/CODEBASE-ASSISTANT-powered-by-HYBRID_RAG.git
+cd CODEBASE-ASSISTANT-powered-by-HYBRID_RAG
+
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+
+# macOS/Linux
+source .venv/bin/activate
+
+# Windows PowerShell
+# .\.venv\Scripts\Activate.ps1
+
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
 The database and authentication modules also require these packages if they are not already installed:
 
-```powershell
+```bash
 pip install sqlalchemy asyncpg supabase
 ```
 
 On Windows, if PowerShell blocks activation, run this in the current terminal before activating:
 
-```powershell
+```bash
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 ```
 
@@ -152,9 +160,8 @@ Never commit `.env` or expose database passwords and API keys. Rotate credential
 
 Use port `8000`, which is the frontend default:
 
-```powershell
-cd "C:\Users\<user>\OneDrive\Desktop\Hybrid_rag"
-.\.venv\Scripts\Activate.ps1
+```bash
+# Activate the virtual environment first, then:
 uvicorn app.backend.router:app --reload --host 127.0.0.1 --port 8000
 ```
 
@@ -166,8 +173,8 @@ The frontend is static and does not use `npm start` or require a `package.json`.
 
 From a second terminal:
 
-```powershell
-cd "C:\Users\<user>\OneDrive\Desktop\Hybrid_rag\app\frontend"
+```bash
+cd app/frontend
 python -m http.server 5500
 ```
 
@@ -264,8 +271,8 @@ Returns the authenticated Supabase user. Requires a bearer token.
 
 Uploads and indexes one supported file. Supported extensions are `.pdf`, `.docx`, `.png`, `.jpg`, and `.txt`.
 
-```powershell
-curl.exe -X POST "http://127.0.0.1:8000/ingest" -F "file=@.\docs\manual.pdf"
+```bash
+curl -X POST "http://127.0.0.1:8000/ingest" -F "file=@docs/manual.pdf"
 ```
 
 The response includes the filename and number of stored chunks. Ingestion refreshes the BM25 index and RAG chain afterward.
@@ -305,14 +312,14 @@ Streams answer chunks as Server-Sent Events. It requires the same bearer token a
 
 ### Ingest documents
 
-```powershell
-python -m hybrid_rag_pipeline.ingest.processing --path .\docs\manual.pdf
-python -m hybrid_rag_pipeline.ingest.processing --path .\docs --chunk_size 1000 --over_lap 200
+```bash
+python -m hybrid_rag_pipeline.ingest.processing --path ./docs/manual.pdf
+python -m hybrid_rag_pipeline.ingest.processing --path ./docs --chunk_size 1000 --over_lap 200
 ```
 
 ### Inspect or query retrieval
 
-```powershell
+```bash
 python -m hybrid_rag_pipeline.rag.retriever.retrieval --inspect --limit 20
 python -m hybrid_rag_pipeline.rag.retriever.retrieval --query "authentication flow" --k 6 --json
 ```
@@ -321,7 +328,7 @@ Useful retrieval options include `--no-rerank`, `--refresh-bm25`, `--fetch-k`, `
 
 ### Ask through the RAG chain
 
-```powershell
+```bash
 python -m hybrid_rag_pipeline.rag.generation.main "Explain the reranking step"
 python -m hybrid_rag_pipeline.rag.generation.main "How does auth work?" --show-sources
 ```
@@ -340,7 +347,7 @@ Check that the backend is running, the frontend calls the same port, and `/healt
 
 Confirm the Aiven service is running, copy the current connection details, and test the configured host and port:
 
-```powershell
+```bash
 Test-NetConnection YOUR_DATABASE_HOST -Port YOUR_DATABASE_PORT
 ```
 
