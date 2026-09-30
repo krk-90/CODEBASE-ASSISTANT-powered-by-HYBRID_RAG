@@ -1,0 +1,198 @@
+{
+  "summary": {
+    "hit_rate@5": 0.9,
+    "recall@5": 0.8,
+    "precision@5": 0.22000000000000003,
+    "mrr": 0.9,
+    "latency_p50_ms": 365.305,
+    "latency_p95_ms": 589.705
+  },
+  "cases": [
+    {
+      "id": "H1",
+      "question": "How does the application combine dense and sparse retrieval?",
+      "retrieved": [
+        "hybrid",
+        "hybrid"
+      ],
+      "relevant": [
+        "hybrid",
+        "retrieval"
+      ],
+      "retrieved_sources": [
+        "evaluation/run_hybrid_eval.py",
+        "evaluation/metrics.py",
+        "hybrid_rag_pipeline/rag/generation/main.py",
+        "evaluation/run_local_eval.py",
+        "tests/test_evaluation_metrics.py"
+      ],
+      "latency_ms": 707.29
+    },
+    {
+      "id": "H2",
+      "question": "How is BM25 used in the retrieval pipeline?",
+      "retrieved": [
+        "retrieval"
+      ],
+      "relevant": [
+        "retrieval"
+      ],
+      "retrieved_sources": [
+        "evaluation/run_local_eval.py",
+        "hybrid_rag_pipeline/rag/retriever/retrieval.py",
+        "evaluation/run_hybrid_eval.py",
+        "evaluation/metrics.py",
+        "tests/test_evaluation_metrics.py"
+      ],
+      "latency_ms": 445.99
+    },
+    {
+      "id": "H3",
+      "question": "How does the cross-encoder reranker work?",
+      "retrieved": [
+        "rerank"
+      ],
+      "relevant": [
+        "rerank"
+      ],
+      "retrieved_sources": [
+        "hybrid_rag_pipeline/rag/retriever/rerank.py",
+        "evaluation/run_local_eval.py",
+        "hybrid_rag_pipeline/rag/retriever/retrieval.py",
+        "evaluation/run_hybrid_eval.py",
+        "hybrid_rag_pipeline/ingest/processing.py"
+      ],
+      "latency_ms": 366.54
+    },
+    {
+      "id": "H4",
+      "question": "How are retrieved documents sent to the language model?",
+      "retrieved": [],
+      "relevant": [
+        "generation"
+      ],
+      "retrieved_sources": [
+        "hybrid_rag_pipeline/rag/retriever/rerank.py",
+        "hybrid_rag_pipeline/rag/retriever/retrieval.py",
+        "evaluation/run_hybrid_eval.py",
+        "evaluation/metrics.py",
+        "tests/test_evaluation_metrics.py"
+      ],
+      "latency_ms": 339.09
+    },
+    {
+      "id": "H5",
+      "question": "How are documents loaded and chunked before indexing?",
+      "retrieved": [
+        "ingest",
+        "processing"
+      ],
+      "relevant": [
+        "ingest",
+        "processing"
+      ],
+      "retrieved_sources": [
+        "hybrid_rag_pipeline/rag/retriever/retrieval.py",
+        "hybrid_rag_pipeline/ingest/processing.py",
+        "hybrid_rag_pipeline/rag/generation/main.py",
+        "hybrid_rag_pipeline/Database/chroma_db.py",
+        "hybrid_rag_pipeline/Database/models.py"
+      ],
+      "latency_ms": 372.9
+    },
+    {
+      "id": "H6",
+      "question": "How does the FastAPI backend expose the RAG application?",
+      "retrieved": [
+        "router"
+      ],
+      "relevant": [
+        "router"
+      ],
+      "retrieved_sources": [
+        "app/backend/auth/oauth.py",
+        "evaluation/run_local_eval.py",
+        "evaluation/run_hybrid_eval.py",
+        "app/backend/router.py",
+        "hybrid_rag_pipeline/Database/models.py"
+      ],
+      "latency_ms": 366.47
+    },
+    {
+      "id": "H7",
+      "question": "How does authentication protect user data?",
+      "retrieved": [
+        "auth",
+        "auth"
+      ],
+      "relevant": [
+        "auth"
+      ],
+      "retrieved_sources": [
+        "app/backend/auth/oauth.py",
+        "tests/test_evaluation_metrics.py",
+        "hybrid_rag_pipeline/Database/models.py",
+        "app/backend/auth/security.py",
+        "hybrid_rag_pipeline/rag/retriever/rerank.py"
+      ],
+      "latency_ms": 348.99
+    },
+    {
+      "id": "H8",
+      "question": "What vector database is used by the application?",
+      "retrieved": [
+        "database"
+      ],
+      "relevant": [
+        "database",
+        "retrieval"
+      ],
+      "retrieved_sources": [
+        "evaluation/run_hybrid_eval.py",
+        "evaluation/run_local_eval.py",
+        "app/backend/auth/oauth.py",
+        "hybrid_rag_pipeline/Database/models.py",
+        "hybrid_rag_pipeline/ingest/processing.py"
+      ],
+      "latency_ms": 356.93
+    },
+    {
+      "id": "H9",
+      "question": "How does reranking change the final top-k results?",
+      "retrieved": [
+        "rerank",
+        "retrieval"
+      ],
+      "relevant": [
+        "rerank",
+        "retrieval"
+      ],
+      "retrieved_sources": [
+        "hybrid_rag_pipeline/rag/retriever/rerank.py",
+        "evaluation/run_local_eval.py",
+        "tests/test_evaluation_metrics.py",
+        "evaluation/metrics.py",
+        "hybrid_rag_pipeline/rag/retriever/retrieval.py"
+      ],
+      "latency_ms": 357.56
+    },
+    {
+      "id": "H10",
+      "question": "Where is the RAG retrieval logic implemented?",
+      "retrieved": [
+        "retrieval"
+      ],
+      "relevant": [
+        "retrieval"
+      ],
+      "retrieved_sources": [
+        "evaluation/run_hybrid_eval.py",
+        "evaluation/run_local_eval.py",
+        "hybrid_rag_pipeline/rag/retriever/retrieval.py",
+        "app/backend/auth/oauth.py",
+        "hybrid_rag_pipeline/Database/models.py"
+      ],
+      "latency_ms": 364.14
+    }
+  ]
+}

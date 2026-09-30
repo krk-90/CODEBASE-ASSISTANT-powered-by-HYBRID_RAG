@@ -1,4 +1,4 @@
-# Code Assistant: Hybrid RAG
+﻿# Code Assistant: Hybrid RAG
 
 Code Assistant is a Retrieval-Augmented Generation (RAG) application for asking questions about an indexed codebase or document collection. It combines dense vector search, sparse keyword search, cross-encoder reranking, and an LLM-generated answer with optional source snippets.
 
@@ -52,31 +52,31 @@ For a question, the retriever combines semantic vector results and keyword resul
 
 ```text
 Hybrid_rag/
-├── app/
-│   ├── backend/
-│   │   ├── router.py             # FastAPI application and API routes
-│   │   └── auth/
-│   │       ├── oauth.py          # Signup, login, and current-user routes
-│   │       └── security.py       # Supabase bearer-token validation
-│   └── frontend/
-│       ├── index.html            # Static chat interface
-│       ├── styles.css            # Frontend styling
-│       └── app.js                # API, auth, upload, and chat client
-├── hybrid_rag_pipeline/
-│   ├── Database/
-│   │   ├── chroma_db.py          # Chroma Cloud client and chunk storage
-│   │   ├── models.py             # SQLAlchemy models
-│   │   └── relational_db.py      # PostgreSQL engine and sessions
-│   ├── ingest/
-│   │   └── processing.py         # Document loading and chunking
-│   └── rag/
-│       ├── generation/main.py    # LLM and RAG chain setup
-│       └── retriever/
-│           ├── retrieval.py      # Vector + BM25 retrieval
-│           └── rerank.py         # Cross-encoder reranking
-├── requirements.txt
-├── .env.example
-└── readme.md
+â”œâ”€â”€ app/
+â”‚   â”œâ”€â”€ backend/
+â”‚   â”‚   â”œâ”€â”€ router.py             # FastAPI application and API routes
+â”‚   â”‚   â””â”€â”€ auth/
+â”‚   â”‚       â”œâ”€â”€ oauth.py          # Signup, login, and current-user routes
+â”‚   â”‚       â””â”€â”€ security.py       # Supabase bearer-token validation
+â”‚   â””â”€â”€ frontend/
+â”‚       â”œâ”€â”€ index.html            # Static chat interface
+â”‚       â”œâ”€â”€ styles.css            # Frontend styling
+â”‚       â””â”€â”€ app.js                # API, auth, upload, and chat client
+â”œâ”€â”€ hybrid_rag_pipeline/
+â”‚   â”œâ”€â”€ Database/
+â”‚   â”‚   â”œâ”€â”€ chroma_db.py          # Chroma Cloud client and chunk storage
+â”‚   â”‚   â”œâ”€â”€ models.py             # SQLAlchemy models
+â”‚   â”‚   â””â”€â”€ relational_db.py      # PostgreSQL engine and sessions
+â”‚   â”œâ”€â”€ ingest/
+â”‚   â”‚   â””â”€â”€ processing.py         # Document loading and chunking
+â”‚   â””â”€â”€ rag/
+â”‚       â”œâ”€â”€ generation/main.py    # LLM and RAG chain setup
+â”‚       â””â”€â”€ retriever/
+â”‚           â”œâ”€â”€ retrieval.py      # Vector + BM25 retrieval
+â”‚           â””â”€â”€ rerank.py         # Cross-encoder reranking
+â”œâ”€â”€ requirements.txt
+â”œâ”€â”€ .env.example
+â””â”€â”€ readme.md
 ```
 
 ## Requirements
@@ -425,3 +425,25 @@ python evaluation/run_hybrid_eval.py
 ```
 
 Reported metrics include Hit Rate@K, Recall@K, Precision@K, MRR, and p50/p95 latency where applicable. Results are written to an evaluation results JSON file and should only be used for reporting after running the evaluation against the current system.
+
+### Local offline evaluation (no backend, no API keys needed)
+
+Runs BM25 retrieval + the same HuggingFace cross-encoder reranker used in production over the project source files. No cloud credentials required.
+
+```bash
+python evaluation/run_local_eval.py
+```
+
+Results are written to `evaluation/hybrid_rag_results_local.json`.
+
+#### Latest local evaluation results (k=5, 10 queries)
+
+| Metric | Score |
+|---|---|
+| Hit Rate @ 5 | 0.90 |
+| Recall @ 5 | 0.80 |
+| Precision @ 5 | 0.22 |
+| MRR | 0.90 |
+| Latency p50 | 365 ms |
+| Latency p95 | 590 ms |
+
